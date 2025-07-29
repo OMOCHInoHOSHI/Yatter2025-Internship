@@ -7,12 +7,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.res.ResourcesCompat
@@ -72,7 +80,27 @@ fun YweetRow(
         // 表示名とユーザー名、Yweetの内容を縦方向に並べるためにColumnを利用
         Column(
             // Columnでは縦方向になるため、verticalArrangementに余白
-            verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            verticalArrangement = Arrangement.spacedBy(4.dp))
+        {
+            // 横に並べるだけであれば、先ほども利用したRowが利用できそうですが、今回は表示名とユーザー名が画面からはみ出るほど長かった場合に、途中で文字列を切って、「...」で省略するために、1つのTextコンポーザブルで表現します。
+            Text(
+                text = buildAnnotatedString {
+                    // appendで文字列セット
+                    append(yweetBindingModel.displayName)
+                    withStyle(
+                        style = SpanStyle(
+                            // 文字色を薄くするために、ContentAlpha.mediumを指定
+                            color = MaterialTheme.colors.onBackground.copy(alpha = ContentAlpha.medium),
+                        )
+                    ) {
+                        append(" @${yweetBindingModel.username}")
+                    }
+                },
+                maxLines = 1, // 文字列が複数行にならないように指定
+                overflow = TextOverflow.Ellipsis, // はみ出した分を「...」で表現
+                fontWeight = FontWeight.Bold, // 文字を太字に
+            )
+
         }
     }
 
