@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Surface
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,6 +17,7 @@ import com.dmm.bootcamp.yatter2025.ui.theme.Yatter2025Theme
 import com.dmm.bootcamp.yatter2025.ui.timeline.bindingmodel.YweetBindingModel
 
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PublicTimelineTemplate(
     yweetList: List<YweetBindingModel>,
@@ -22,6 +25,10 @@ fun PublicTimelineTemplate(
     isRefreshing: Boolean,
     onRefresh: () -> Unit,
 ) {
+
+    // リフレッシュにはPullRefreshStateという状態オブジェクトが必要
+    // PullToRefreshが実行されたときに、onRefreshの処理を発火
+    val pullRefreshState = rememberPullRefreshState(isRefreshing, onRefresh)
 
     // BoxコンポーザブルでLazyColumnをラップ
     Box(
