@@ -3,10 +3,14 @@ package com.dmm.bootcamp.yatter2025.ui.timeline
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -100,6 +104,22 @@ fun YweetRow(
                 overflow = TextOverflow.Ellipsis, // はみ出した分を「...」で表現
                 fontWeight = FontWeight.Bold, // 文字を太字に
             )
+
+            Text(text = yweetBindingModel.content)
+
+            // 画像の数がいくつになっても横一列に全て並べるために今回はLazyRowを利用します。
+            //横一列にコンポーザブルを並べるという点はRowと同様ですが、並べたコンポーザブルをスクロール可能にしたり数が不定なデータを効率的に表示したりするためによく利用されるコンポーザブルです
+            LazyRow {
+                // itemsの第一引数に並べたいデータセットを渡す
+                items(yweetBindingModel.attachmentImageList) { attachmentImage ->
+                    // データ1件あたりに表示したいコンポーザブルを呼び出す
+                    AsyncImage(
+                        model = attachmentImage.url,
+                        contentDescription = attachmentImage.description
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                }
+            }
 
         }
     }
