@@ -1,10 +1,14 @@
 package com.dmm.bootcamp.yatter2025.ui.timeline
 
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.dmm.bootcamp.yatter2025.ui.theme.Yatter2025Theme
 import com.dmm.bootcamp.yatter2025.ui.timeline.bindingmodel.YweetBindingModel
 
@@ -16,7 +20,11 @@ fun PublicTimelineTemplate(
     isRefreshing: Boolean,
     onRefresh: () -> Unit,
 ) {
-    LazyColumn {
+    LazyColumn (
+        // 画面全体に広がったままでは視認性が悪いため、contentPaddingを指定しLazyColumn内の要素にpaddingがつくようにしてみます
+        modifier = Modifier.fillMaxSize(),
+        contentPadding = PaddingValues(8.dp),
+    ){
         items(yweetList){ item ->
             YweetRow(yweetBindingModel = item)
         }
