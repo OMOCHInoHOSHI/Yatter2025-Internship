@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Yatter2025</string>
     <string name="public_timeline_avatar_content_description">アバター画像</string>
+    <string name="timelin_top">タイムライン</string>
 </resources>
