@@ -45,4 +45,13 @@ class PublicTimelineViewModel (
             _uiState.update { it.copy(isLoading = false) } // UiStateのローディング状態を解除する
         }
     }
+
+    // 画面を下の方にスワイプして画面を更新するPullToRefresh時のメソッド
+    fun onRefresh() {
+        viewModelScope.launch { // ViewModelのライフサイクルに合わせたスコープのcoroutine起動
+            _uiState.update { it.copy(isRefreshing = true) } // UiStateをリフレッシュ状態にする
+            fetchPublicTimeline() // fetchPublicTimeline()メソッドを呼び出しYweet一覧を更新
+            _uiState.update { it.copy(isRefreshing = false) } // UiStateのリフレッシュ状態を解除する
+        }
+    }
 }
