@@ -1,9 +1,15 @@
 package com.dmm.bootcamp.yatter2025.ui.timeline
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.dmm.bootcamp.yatter2025.ui.theme.Yatter2025Theme
 import com.dmm.bootcamp.yatter2025.ui.timeline.bindingmodel.ImageBindingModel
 import com.dmm.bootcamp.yatter2025.ui.timeline.bindingmodel.YweetBindingModel
@@ -16,6 +22,16 @@ fun YweetRow(
     yweetBindingModel: YweetBindingModel,
     modifier: Modifier = Modifier,
 ) {
+    // {}内のコンポーザブルを横一列に並べる
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp) , // 縦方向(vertical)に4dpのpaddingを当てる
+        horizontalArrangement = Arrangement.spacedBy(8.dp), //横一列に並べるコンポーザブル同士の隙間を8dp空ける
+    ){
+
+    }
+
 }
 
 @Preview
