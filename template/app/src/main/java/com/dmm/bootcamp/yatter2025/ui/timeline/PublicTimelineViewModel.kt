@@ -19,6 +19,7 @@ class PublicTimelineViewModel (
     // Yweetの一覧を取得するためにYweetRepositoryを依存関係に追加
     private val yweetRepository: YweetRepository,
     ) : ViewModel() {
+        // 変更を検知できる
     private val _uiState: MutableStateFlow<PublicTimelineUiState> =
         MutableStateFlow(PublicTimelineUiState.empty())
     val uiState: StateFlow<PublicTimelineUiState> = _uiState.asStateFlow()

@@ -13,9 +13,7 @@ import org.koin.androidx.compose.getViewModel
 fun PublicTimelinePage(
     //getViewmodel はDMMが定義
     publicTimelineViewModel: PublicTimelineViewModel = getViewModel(),
-
-    ) {
-
+) {
     // UiStateを抜き出し
     // publicTimelineViewModel#uiStateの変更を監視する
     val uiState by publicTimelineViewModel.uiState.collectAsStateWithLifecycle()
@@ -30,6 +28,6 @@ fun PublicTimelinePage(
         yweetList = uiState.yweetList,
         isLoading = uiState.isLoading,
         isRefreshing = uiState.isRefreshing,
-        onRefresh = publicTimelineViewModel::onRefresh,   // onRefreshはViewModelのメソッドになるため、UiStateからは取得できません は関数オブジェクトとして渡す ::を使う
+        onRefresh = publicTimelineViewModel::onRefresh, // onRefreshはViewModelのメソッドになるため、UiStateからは取得できません は関数オブジェクトとして渡す ::を使う
     )
 }
