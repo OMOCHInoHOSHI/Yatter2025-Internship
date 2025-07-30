@@ -12,15 +12,18 @@ data class LoginUiState(
     // ログイン実行可能かのフラグ
     val isEnableLogin: Boolean = validUsername && validPassword
 
+    // クラス内に作成されるSingleton(指定したクラスのインスタンスが1つしか存在しないことを保証する)
+    companion object{
+        fun empty(): LoginUiState = LoginUiState(
+            // LoginBindingModelの定義を使う
+            loginBindingModel = LoginBindingModel(
+                username = "",
+                password = ""
+            ),
+            isLoading = false,
+            validUsername = false,
+            validPassword = false,
+        )
+    }
 
-    fun empty(): LoginUiState = LoginUiState(
-        // LoginBindingModelの定義を使う
-        loginBindingModel = LoginBindingModel(
-            username = "",
-            password = ""
-        ),
-        isLoading = false,
-        validUsername = false,
-        validPassword = false,
-    )
 }
