@@ -1,13 +1,16 @@
 package com.dmm.bootcamp.yatter2025.ui.login
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.dmm.bootcamp.yatter2025.domain.model.Password
 import com.dmm.bootcamp.yatter2025.domain.model.Username
 import com.dmm.bootcamp.yatter2025.usecase.login.LoginUseCase
+import com.dmm.bootcamp.yatter2025.usecase.login.LoginUseCaseResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 
 // ログイン
@@ -58,9 +61,37 @@ class LoginViewModel(
 
 
     // ボタン押下時
-    fun onClickLogin() {}
+    fun onClickLogin() {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) } // ローディング状態にする1
 
-    fun onClickRegister() {}
+            val snapBindingModel = uiState.value.loginBindingModel
+            when (
+                val result =
+                    loginUseCase.execute(
+                        Username(snapBindingModel.username),
+                        Password(snapBindingModel.password),
+                    ) // ログイン処理(LoginUseCase)実行2
+            ) {
+                is LoginUseCaseResult.Success -> {
+                    // ログイン処理成功したらパブリックタイムライン画面へ遷移3
+                    // パブリックタイムライン画面に遷移する処理の追加
+                }
+
+                is LoginUseCaseResult.Failure -> {
+                    // ログイン処理失敗したらエラー表示4
+                    // エラー表示
+                }
+            }
+
+            _uiState.update { it.copy(isLoading = false) } // ローディング状態を解除する5
+        }
+    }
+
+    // _destinationにユーザー登録画面のDestinationを渡します
+    fun onClickRegister() {
+        // _destination.value = RegisterUserDestination()
+    }
 
     fun onCompleteNavigation() {}
 
