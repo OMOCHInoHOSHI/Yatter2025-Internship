@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
     setContent {
       Yatter2025Theme {
         Surface {
-          PostPage()
-//          MainApp()
+//          PostPage()
+          MainApp()
 //          LoginPage()
 //          PublicTimelinePage()
         }
