@@ -8,10 +8,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
@@ -33,6 +37,7 @@ fun PublicTimelineTemplate(
     isLoading: Boolean,
     isRefreshing: Boolean,
     onRefresh: () -> Unit,
+    onClickPost: () -> Unit,//FABが押された時の関数オブジェクト
 ) {
 
     // リフレッシュにはPullRefreshStateという状態オブジェクトが必要
@@ -47,9 +52,21 @@ fun PublicTimelineTemplate(
                     Text(text = stringResource(R.string.timelin_top))
                 }
             )
-        }
+        },
 
-    ) { paddingValues ->
+        // FAB
+        floatingActionButton = {
+            FloatingActionButton(onClick = onClickPost) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "post"
+                )
+            }
+        },
+
+
+
+        ) { paddingValues ->
 
         // BoxコンポーザブルでLazyColumnをラップ
         Box(
@@ -116,7 +133,8 @@ private fun PublicTimelineTemplatePreview() {
                 ),
                 isLoading = true,
                 isRefreshing = false,
-                onRefresh = {}
+                onRefresh = {},
+                onClickPost = {},
             )
         }
     }

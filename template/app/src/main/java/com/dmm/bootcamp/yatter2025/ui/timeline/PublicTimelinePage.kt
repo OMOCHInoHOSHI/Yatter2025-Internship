@@ -43,5 +43,6 @@ fun PublicTimelinePage(
         isLoading = uiState.isLoading,
         isRefreshing = uiState.isRefreshing,
         onRefresh = publicTimelineViewModel::onRefresh, // onRefreshはViewModelのメソッドになるため、UiStateからは取得できません は関数オブジェクトとして渡す ::を使う
+        onClickPost = publicTimelineViewModel::onClickPost,
     )
 }
