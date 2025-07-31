@@ -2,7 +2,9 @@ package com.dmm.bootcamp.yatter2025.ui.timeline
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dmm.bootcamp.yatter2025.common.navigation.Destination
 import com.dmm.bootcamp.yatter2025.domain.repository.YweetRepository
+import com.dmm.bootcamp.yatter2025.ui.post.PostDestination
 import com.dmm.bootcamp.yatter2025.ui.timeline.bindingmodel.converter.YweetConverter
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -37,6 +39,23 @@ class PublicTimelineViewModel (
             )
         }
     }
+
+
+    // 遷移先の情報
+    private val _destination = MutableStateFlow<Destination?>(null)
+    val destination: StateFlow<Destination?> = _destination.asStateFlow()
+
+    // FABが押されたことを処理するメソッド
+    fun onClickPost() {
+        _destination.value = PostDestination()
+    }
+
+    // 遷移が完了したあとに_destinationをクリアする処理
+    fun onCompleteNavigation() {
+        _destination.value = null
+    }
+
+
 
     // 今回の画面では画面を表示するたびに最新のリストを取得しておきたい関数
     fun onResume() {
