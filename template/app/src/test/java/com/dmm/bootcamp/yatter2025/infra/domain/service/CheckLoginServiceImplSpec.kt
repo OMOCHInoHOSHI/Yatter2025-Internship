@@ -12,6 +12,7 @@ class CheckLoginServiceImplSpec {
   private val tokenPreferences = mockk<TokenPreferences>()
   private val subject = CheckLoginServiceImpl(tokenPreferences)
 
+  // すでにログインしている場合
   @Test
   fun getTrueWhenSavedUsername() = runTest {
     val accessToken = "accessToken"
@@ -29,6 +30,7 @@ class CheckLoginServiceImplSpec {
     }
   }
 
+  // 未ログイン時
   @Test
   fun getFalseWhenUnsavedUsername() = runTest {
     val accessToken = ""
