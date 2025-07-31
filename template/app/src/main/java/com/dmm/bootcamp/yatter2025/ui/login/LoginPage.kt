@@ -24,7 +24,7 @@ fun LoginPage(
 
     // Page側
     // destinationのStateFlowをLoginPage側で購読
-    val destination by loginViewModel.destination.collectAsStateWithLifecycle()
+    val destination by loginViewModel.destination.collectAsStateWithLifecycle() //ここで購読
     val navController = LocalNavController.current
     LaunchedEffect(destination)  {
         destination?.let {
