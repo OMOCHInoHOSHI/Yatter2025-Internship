@@ -30,6 +30,7 @@ class LoginViewModel(
 
     //画面遷移処理はViewModel内では実施できないため、UI側に画面遷移することを通達する手段
     private val _destination = MutableStateFlow<Destination?>(null)
+    // 参照される
     val destination: StateFlow<Destination?> = _destination.asStateFlow()
 
     // メソッド定義

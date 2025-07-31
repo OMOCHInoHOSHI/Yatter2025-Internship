@@ -23,12 +23,13 @@ fun LoginPage(
     )
 
     // Page側
-//    val destination by loginViewModel.destination.collectAsStateWithLifecycle()
-//    val navController = LocalNavController.current
-//    LaunchedEffect(destination)  {
-//        destination?.let {
-//            it.navigate(navController)
-//            loginViewModel.onCompleteNavigation()
-//        }
-//    }
+    // destinationのStateFlowをLoginPage側で購読
+    val destination by loginViewModel.destination.collectAsStateWithLifecycle()
+    val navController = LocalNavController.current
+    LaunchedEffect(destination)  {
+        destination?.let {
+            it.navigate(navController)
+            loginViewModel.onCompleteNavigation()
+        }
+    }
 }
