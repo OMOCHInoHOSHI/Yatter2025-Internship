@@ -2,8 +2,10 @@ package com.dmm.bootcamp.yatter2025.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dmm.bootcamp.yatter2025.common.navigation.Destination
 import com.dmm.bootcamp.yatter2025.domain.model.Password
 import com.dmm.bootcamp.yatter2025.domain.model.Username
+import com.dmm.bootcamp.yatter2025.ui.timeline.PublicTimelineDestination
 import com.dmm.bootcamp.yatter2025.usecase.login.LoginUseCase
 import com.dmm.bootcamp.yatter2025.usecase.login.LoginUseCaseResult
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,7 +28,9 @@ class LoginViewModel(
     // uiStateは、StateFlowとして公開され、外部から変更できないようにしている
     val uiState: StateFlow<LoginUiState> = _uiState.asStateFlow()
 
-
+    //画面遷移処理はViewModel内では実施できないため、UI側に画面遷移することを通達する手段
+    private val _destination = MutableStateFlow<Destination?>(null)
+    val destination: StateFlow<Destination?> = _destination.asStateFlow()
 
     // メソッド定義
 
@@ -76,6 +80,14 @@ class LoginViewModel(
                 is LoginUseCaseResult.Success -> {
                     // ログイン処理成功したらパブリックタイムライン画面へ遷移3
                     // パブリックタイムライン画面に遷移する処理の追加
+//                    _destination.value = PublicTimelineDestination()
+
+                    // 戻るでログイン画面に戻らないようにする
+                    _destination.value = PublicTimelineDestination {
+                        popUpTo(LoginDestination().route) {
+                            inclusive = true
+                        }
+                    }
                 }
 
                 is LoginUseCaseResult.Failure -> {
@@ -90,9 +102,11 @@ class LoginViewModel(
 
     // _destinationにユーザー登録画面のDestinationを渡します
     fun onClickRegister() {
-        // _destination.value = RegisterUserDestination()
+//         _destination.value = RegisterUserDestination()
     }
 
-    fun onCompleteNavigation() {}
+    fun onCompleteNavigation() {
+        _destination.value = null
+    }
 
 }
