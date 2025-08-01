@@ -2,4 +2,10 @@
     <string name="app_name">Yatter2025</string>
     <string name="public_timeline_avatar_content_description">アバター画像</string>
     <string name="timelin_top">タイムライン</string>
+    <string name="news">新規</string>
+    <string name="username">ユーザー名</string>
+    <string name="username_eng">username</string>
+    <string name="password">パスワード</string>
+    <string name="password_eng">password</string>
+    <string name="Registration">登録</string>
 </resources>
