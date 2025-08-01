@@ -100,7 +100,7 @@ class RegisterUserViewModel(
 //                _destination.value = PublicTimelineDestination()
 //                // 画面遷移
                 _destination.value = PublicTimelineDestination{
-                    popUpTo(NewUserDestination().route){
+                    popUpTo(RegisterUserDestination().route){
                         inclusive = true
                     }
                 }

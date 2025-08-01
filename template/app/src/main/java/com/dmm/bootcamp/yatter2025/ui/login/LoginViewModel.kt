@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.dmm.bootcamp.yatter2025.common.navigation.Destination
 import com.dmm.bootcamp.yatter2025.domain.model.Password
 import com.dmm.bootcamp.yatter2025.domain.model.Username
+import com.dmm.bootcamp.yatter2025.ui.signup.RegisterUserDestination
 import com.dmm.bootcamp.yatter2025.ui.timeline.PublicTimelineDestination
 import com.dmm.bootcamp.yatter2025.usecase.login.LoginUseCase
 import com.dmm.bootcamp.yatter2025.usecase.login.LoginUseCaseResult
@@ -103,7 +104,7 @@ class LoginViewModel(
 
     // _destinationにユーザー登録画面のDestinationを渡します
     fun onClickRegister() {
-//         _destination.value = RegisterUserDestination()
+         _destination.value = RegisterUserDestination()
     }
 
     fun onCompleteNavigation() {
