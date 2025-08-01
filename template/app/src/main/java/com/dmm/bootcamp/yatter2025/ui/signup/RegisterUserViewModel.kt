@@ -97,13 +97,13 @@ class RegisterUserViewModel(
             // 新規登録成功
             is RegisterUserUseCaseResult.Success -> {
 
-                _destination.value = PublicTimelineDestination()
-                // 画面遷移
-//                _destination.value = PublicTimelineDestination{
-//                    popUpTo(NewUseerDestination().route){
-//                        inclusive = true
-//                    }
-//                }
+//                _destination.value = PublicTimelineDestination()
+//                // 画面遷移
+                _destination.value = PublicTimelineDestination{
+                    popUpTo(NewUserDestination().route){
+                        inclusive = true
+                    }
+                }
             }
 
 
