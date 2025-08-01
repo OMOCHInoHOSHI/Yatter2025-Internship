@@ -33,7 +33,7 @@ fun NewuserTemplate(
     onChangedPassword: (String) -> Unit,
     isEnableLogin: Boolean,
     isLoading: Boolean,
-    onClickLogin: () -> Unit,
+//    onClickLogin: () -> Unit,
     onClickRegister: () -> Unit,
 ){
     Scaffold(
@@ -109,7 +109,7 @@ fun NewuserTemplate(
                 // 新規登録
                 Button(
                     enabled = isEnableLogin,
-                    onClick = onClickLogin,
+                    onClick = onClickRegister,
                     modifier = Modifier
                         .fillMaxWidth(),
                 ) {
@@ -143,7 +143,7 @@ fun NewuserTemplatePreview() {
                 onChangedPassword = {},
                 isEnableLogin = true,
                 isLoading = false,
-                onClickLogin = {},
+//                onClickLogin = {},
                 onClickRegister = {},
             )
         }
