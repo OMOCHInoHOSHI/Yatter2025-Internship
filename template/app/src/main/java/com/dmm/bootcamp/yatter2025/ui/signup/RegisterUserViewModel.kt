@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 // UI表示に必要な実装を行う
 
 
-class NewuserViewModel(
+class RegisterUserViewModel(
     private val newuserUseCase: RegisterUserUseCase
 ):ViewModel(){
 

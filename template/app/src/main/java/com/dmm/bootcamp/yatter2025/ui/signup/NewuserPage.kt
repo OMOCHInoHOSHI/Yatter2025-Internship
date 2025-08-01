@@ -9,7 +9,7 @@ import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun NewuserPage(
-    newuserViewModel: NewuserViewModel = getViewModel(),
+    newuserViewModel: RegisterUserViewModel = getViewModel(),
 ){
 
     val uiState: NewuserUiState by newuserViewModel.uiState.collectAsStateWithLifecycle()
