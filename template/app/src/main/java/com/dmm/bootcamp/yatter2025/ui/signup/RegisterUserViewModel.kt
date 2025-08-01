@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.dmm.bootcamp.yatter2025.common.navigation.Destination
 import com.dmm.bootcamp.yatter2025.domain.model.Password
 import com.dmm.bootcamp.yatter2025.domain.model.Username
+import com.dmm.bootcamp.yatter2025.ui.login.LoginDestination
 import com.dmm.bootcamp.yatter2025.ui.timeline.PublicTimelineDestination
 import com.dmm.bootcamp.yatter2025.usecase.register.RegisterUserUseCase
 import com.dmm.bootcamp.yatter2025.usecase.register.RegisterUserUseCaseResult
@@ -70,7 +71,7 @@ class RegisterUserViewModel(
 
 
 //    新規登録ボタン押下時
-    fun onClickNewuser(){
+    fun onClickCreateNewuser(){
 
         // ViewModel 内で非同期処理を安全に実行するための Kotlin コルーチン構文 ライフサイクル連動機能など
         viewModelScope.launch {
@@ -122,7 +123,7 @@ class RegisterUserViewModel(
 
     // _destinationにユーザー登録画面のDestinationを渡します
     fun onClickRegister() {
-//         _destination.value = RegisterUserDestination()
+         _destination.value = LoginDestination()
     }
 
 

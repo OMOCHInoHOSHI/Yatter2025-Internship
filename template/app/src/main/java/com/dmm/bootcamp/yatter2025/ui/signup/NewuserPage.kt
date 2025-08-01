@@ -21,7 +21,8 @@ fun NewuserPage(
         onChangedPassword = newuserViewModel::onChangedPassword,
         isEnableLogin = uiState.isEnabelnewUser,
         isLoading = uiState.isloding,
-        onClickRegister = newuserViewModel::onClickRegister,
+        onClickCreateNewuser = newuserViewModel::onClickCreateNewuser,
+        onClickRegister = newuserViewModel::onClickRegister,    //ログインページへの画面遷移
     )
 
         // destinationのStateFlowをLoginPage側で購読
